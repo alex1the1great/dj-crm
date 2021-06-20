@@ -20,7 +20,8 @@
         <p>Age: {{ lead.age }}</p>
         <p>Agent email: {{ lead.agent }}</p>
         <hr>
-        <a href="{% url 'leads:lead_update' lead.id %}">Update</a>
+        <a href="{% url 'leads:lead_update' lead.id %}">Update</a> |
+        <a href="{% url 'leads:lead_delete' lead.id %}">Delete</a>
     </div>
 </body>
 </html>

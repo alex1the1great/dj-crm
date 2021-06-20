@@ -34,3 +34,9 @@ def lead_update(request, pk):
             form.save()
             return redirect(reverse('leads:lead_detail', args=[pk]))
     return render(request, 'leads/lead_update.html', {'lead': lead, 'form': form})
+
+
+def lead_delete(request, pk):
+    lead = get_object_or_404(Lead, id=pk)
+    lead.delete()
+    return redirect('leads:lead_list')
