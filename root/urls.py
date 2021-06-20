@@ -4,6 +4,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('leads/', include('apps.leads.urls', namespace='leads'))
 ]
 
 if settings.DEBUG:
