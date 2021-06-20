@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>DJANGO CRM</title>
+{% extends '_base.html' %}
 
-    <style>
-        .lead {
-            padding: 10px 6px;
-            margin-top: 10px;
-            background-color: #f6f6f6;
-            width: 50%;
-        }
-    </style>
-</head>
-<body>
-    <h1><a href="{% url 'leads:lead_list' %}">Leads</a></h1>
+{% block content %}
     <div class="lead">
         <p>Name: <strong>{{ lead.first_name }} {{ lead.last_name }}</strong></p>
         <p>Age: {{ lead.age }}</p>
@@ -23,5 +9,4 @@
         <a href="{% url 'leads:lead_update' lead.id %}">Update</a> |
         <a href="{% url 'leads:lead_delete' lead.id %}">Delete</a>
     </div>
-</body>
-</html>
+{% endblock content %}

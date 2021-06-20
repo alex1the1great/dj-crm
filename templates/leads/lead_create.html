@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>DJANGO CRM</title>
-</head>
-<body>
-    <h1><a href="{% url 'leads:lead_list' %}">Leads</a></h1>
+{% extends '_base.html' %}
+
+{% block content %}
     <h3>Create a new Lead</h3>
     <form action="{% url 'leads:lead_create' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Create Lead">
     </form>
-    
-</body>
-</html>
+{% endblock content %}
