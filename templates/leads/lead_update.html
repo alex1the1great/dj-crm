@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DJANGO CRM</title>
+</head>
+<body>
+    <h1><a href="{% url 'leads:lead_list' %}">Leads</a></h1>
+    <h3>Update lead: {{ lead.first_name }} {{ lead.last_name }}</h3>
+    <form action="{% url 'leads:lead_update' lead.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update Lead">
+    </form>
+
+</body>
+</html>
