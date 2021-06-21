@@ -1,46 +1,46 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.views import generic
 from django.urls import reverse
 
-from .models import Lead, Agent
+from .models import Lead
 from .forms import LeadForm
 
 
-def landing_page(request):
-    return render(request, 'landing.html')
+class LandingPage(generic.TemplateView):
+    template_name = 'landing.html'
 
 
-def lead_list(request):
-    leads = Lead.objects.all()
-    return render(request, 'leads/lead_list.html', {'leads': leads})
+class LeadListView(generic.ListView):
+    template_name = 'leads/lead_list.html'
+    queryset = Lead.objects.all()
+    context_object_name = 'leads'
 
 
-def lead_detail(request, pk):
-    lead = get_object_or_404(Lead, id=pk)
-    return render(request, 'leads/lead_detail.html', {'lead': lead})
+class LeadDetailView(generic.DetailView):
+    template_name = 'leads/lead_detail.html'
+    queryset = Lead.objects.all()
+    context_object_name = 'lead'
 
 
-def lead_create(request):
-    form = LeadForm()
-    if request.method == 'POST':
-        form = LeadForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('leads:lead_list')
-    return render(request, 'leads/lead_create.html', {'form': form})
+class LeadCreateView(generic.CreateView):
+    template_name = 'leads/lead_create.html'
+    form_class = LeadForm
+
+    def get_success_url(self):
+        return reverse('leads:lead_list')
 
 
-def lead_update(request, pk):
-    lead = get_object_or_404(Lead, id=pk)
-    form = LeadForm(instance=lead)
-    if request.method == 'POST':
-        form = LeadForm(request.POST, instance=lead)
-        if form.is_valid():
-            form.save()
-            return redirect(reverse('leads:lead_detail', args=[pk]))
-    return render(request, 'leads/lead_update.html', {'lead': lead, 'form': form})
+class LeadUpdateView(generic.UpdateView):
+    template_name = 'leads/lead_update.html'
+    form_class = LeadForm
+    queryset = Lead.objects.all()
+
+    def get_success_url(self):
+        return reverse('leads:lead_list')
 
 
-def lead_delete(request, pk):
-    lead = get_object_or_404(Lead, id=pk)
-    lead.delete()
-    return redirect('leads:lead_list')
+class LeadDeleteView(generic.DeleteView):
+    template_name = 'leads/lead_delete.html'
+    queryset = Lead.objects.all()
+
+    def get_success_url(self):
+        return reverse('leads:lead_list')
