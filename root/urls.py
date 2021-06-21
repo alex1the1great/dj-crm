@@ -10,7 +10,7 @@ urlpatterns = [
     path('accounts/', include('apps.accounts.urls')),
 
     # Local
-    path('', include('apps.pages.urls')),
+    path('', include('apps.pages.urls', namespace='pages')),
     path('leads/', include('apps.leads.urls', namespace='leads'))
 ]
 
