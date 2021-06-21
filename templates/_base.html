@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>DJANGO CRM</title>
-    <style>
-        .lead {
-            padding: 10px 6px;
-            margin-top: 10px;
-            background-color: #f6f6f6;
-            width: 50%;
-        }
-    </style>
+    {# Tailwind CSS #}
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1><a href="{% url 'leads:lead_list' %}">Leads</a></h1>
-    {% block content %}{% endblock content %}
+    <div class="max-w-6xl mx-auto">
+        {% include 'navbar.html' %}
+        {% block content %}{% endblock content %}
+    </div>
 </body>
 </html>

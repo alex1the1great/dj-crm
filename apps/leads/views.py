@@ -5,6 +5,10 @@ from .models import Lead, Agent
 from .forms import LeadForm
 
 
+def landing_page(request):
+    return render(request, 'landing.html')
+
+
 def lead_list(request):
     leads = Lead.objects.all()
     return render(request, 'leads/lead_list.html', {'leads': leads})
