@@ -7,6 +7,10 @@ from apps.leads.views import LandingPage
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # User management
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('apps.accounts.urls')),
+
     # Local
     path('', LandingPage.as_view(), name='landing_page'),
     path('leads/', include('apps.leads.urls', namespace='leads'))
