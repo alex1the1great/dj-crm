@@ -11,7 +11,8 @@ urlpatterns = [
 
     # Local
     path('', include('apps.pages.urls', namespace='pages')),
-    path('leads/', include('apps.leads.urls', namespace='leads'))
+    path('leads/', include('apps.leads.urls', namespace='leads')),
+    path('agents/', include('apps.agents.urls', namespace='agents')),
 ]
 
 if settings.DEBUG:
